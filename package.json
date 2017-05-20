@@ -1,0 +1,25 @@
+{
+  "name": "odot",
+  "version": "1.0.0",
+  "description": "A simple CLI checklist",
+  "main": "index.js",
+  "bin": {
+    "odot": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kodedninja/odot.git"
+  },
+  "author": "kodedninja",
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "checklist",
+    "todolist",
+    "minimal"
+  ],
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.9.0"
+  }
+}
