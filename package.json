@@ -1,5 +1,5 @@
 {
-  "name": "odot",
+  "name": "odotlist",
   "version": "1.0.0",
   "description": "A simple CLI checklist",
   "main": "index.js",
