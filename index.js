@@ -124,9 +124,10 @@ if (!process.argv.slice(2).length) {
 }
 
 function printList(json) {
+    let counter = 1;
     json.items.forEach(function(element) {
-        if (element.done) console.log(colors.green('✓ ' + element.name));
-        else console.log(colors.red.bold('✗ ' + element.name));
+        if (element.done) console.log(colors.green('✓ (' + counter++ + ') ' + element.name));
+        else console.log(colors.red.bold('✗ (' + counter++ + ') ' + element.name));
     }, this);
 }
 
