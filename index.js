@@ -54,7 +54,8 @@ program
     .action(function(item) {
         item = makeText(item);
         loadList(function(json) {
-            var p = 0;
+            let p = 0;
+            if (item == '') item = json.items.length;
             if (isNaN(item)) {
                 json.items.forEach(function(element) {
                     if (element.name == item) {
@@ -64,13 +65,13 @@ program
                     p++;
                 }, this);
             } else {
-                var count = 0;
+                var count = 1;
                 json.items.forEach(function(element) {
-                    count++;
                     if (count == item) {
                         json.items.splice(count - 1, 1);
                         return;
                     }
+                    count++;
                 }, this);
             }
 
@@ -85,7 +86,17 @@ program
     .action(function(item) {
         item = makeText(item);
         loadList(function(json) {
-
+            if (item == '') {
+                // Find first unchecked
+                let counter = 1;
+                json.items.forEach(function(element) {
+                    if (element.done == false) {
+                        item = counter;
+                        return;
+                    }
+                    counter++;
+                }, this);
+            }
             if (isNaN(item)) {
                 json.items.forEach(function(element) {
                     if (element.name == item) {
@@ -94,7 +105,7 @@ program
                     }
                 }, this);
             } else {
-                var counter = 0;
+                let counter = 0;
                 json.items.forEach(function(element) {
                     counter++;
                     if (counter == item) {
