@@ -16,6 +16,7 @@ Usage: odot <command> <item>
     list|=              List your current list
     add|+ <item>        Add an item to your list
     remove|- <item>     Remove an item to your list
+    filter|*            Remove finished items from your list
     check|! <item>      Check an item on your list
     clear|0             Clear your list
 
@@ -24,7 +25,7 @@ Usage: odot <command> <item>
     -h, --help     output usage information
     -V, --version  output the version number
 ```
-Commands ```-``` and ```!``` also work with numbers (ex.: ```odot ! 1``` will check the first item on the list).
+Commands ```-``` and ```!``` also work with numbers (ex.: ```odot ! 1``` will check the first item on the list) or without any paremeters.
 
 #### Examples
 ```
@@ -50,3 +51,8 @@ Removes "Make examples" from the list
 odot =
 ```
 Prints the list
+<br><br>
+```
+odot *
+```
+Remove finished items from your list

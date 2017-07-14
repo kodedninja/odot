@@ -78,6 +78,22 @@ program
             printList(json);
             fs.writeFileSync(".checklist.odot", JSON.stringify(json));
         });
+
+});
+
+program
+    .command("filter").alias("*")
+    .description("Remove finished items from your list")
+    .action(function() {
+        var res = {items: []}, c = 0;
+	    loadList(function (json) {
+            json.items.forEach(function (element) {
+		         if (!element.done) res.items[c++] = element;
+	        });
+
+	        printList(res);
+            fs.writeFileSync(".checklist.odot", JSON.stringify(res));
+        });
 });
 
 program
