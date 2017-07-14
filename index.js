@@ -65,13 +65,13 @@ program
                     p++;
                 }, this);
             } else {
-                var count = 1;
+                var count = 0;
                 json.items.forEach(function(element) {
+                    count++;
                     if (count == item) {
                         json.items.splice(count - 1, 1);
                         return;
                     }
-                    count++;
                 }, this);
             }
 
