@@ -1,13 +1,21 @@
 const axios = require('axios');
 const colors = require('colors');
+const shortid = require('shortid');
 
 var remote = {};
 
-remote.push = function(data) {
+remote.push = function(data, cb) {
 	if (!checkRemote(data)) return null;
 
+	// Make new version
+	data.remote.version = shortid.generate();
+
 	var secret = data.remote.secret;
-	console.log(secret)
+	axios.post('http://localhost:8080/api/l/' + secret, {
+		data: data
+	}).then(cb).catch(function(err) {
+		console.log(colors.red(err));
+	});
 }
 
 remote.pull = function(data, cb) {

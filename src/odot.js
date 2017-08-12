@@ -147,20 +147,22 @@ Odot.prototype.disconnect = function() {
 }
 
 Odot.prototype.push = function () {
-	remote.push(this.data);
+	remote.push(this.data, function(res) {
+		console.log(res.data)
+	});
 }
 
 Odot.prototype.pull = function() {
-	var d = this.data;
-	remote.pull(d, function(res) {
-		var localVersionIndex = res.data.versions.indexOf(d.remote.version);
-		if (localVersionIndex > 0) {
-			this.data = res.data.data;
-			this.save();
-		} else {
+	var t = this;
+	remote.pull(t.data, function(res) {
+		var localVersionIndex = res.data.versions.indexOf(t.data.remote.version);
+		//if (localVersionIndex > 0) {
+			t.data = res.data.data;
+			t.save();
+		//} else {
 			// Not in the queue yet
-			console.log("The local version of the list is probably newer.");
-		}
+		//	console.log("The local version of the list is probably newer.");
+	//	}
 	});
 }
 

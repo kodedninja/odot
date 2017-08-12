@@ -2,15 +2,19 @@
 	"items": [
 		{
 			"name": "Hello ",
-			"done": false
+			"done": true
+		},
+		{
+			"name": "World ",
+			"done": true
 		}
 	],
 	"stats": {
-		"done": 0,
+		"done": 2,
 		"unfinished": 0
 	},
 	"remote": {
-		"version": "SJDnd9nw-",
+		"version": "rJ0heonD-",
 		"secret": "46Juzcyx"
 	}
 }
