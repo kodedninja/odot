@@ -1,5 +1,7 @@
 const colors = require('colors');
 const fs = require('fs');
+const shortid = require('shortid');
+const remote = require('./remote');
 
 function Odot() {
 	this.data = this.load();
@@ -10,12 +12,12 @@ Odot.prototype.load = function() {
 		var string = fs.readFileSync('.checklist.odot', {encoding: 'utf-8'});
 		return JSON.parse(string);
 	} catch (e) {
-		return {items: [], stats: Odot.newStats()};
+		return {items: [], stats: Odot.newStats(), remote: {version: shortid.generate()}};
 	}
 }
 
 Odot.prototype.save = function() {
-	fs.writeFileSync(".checklist.odot", JSON.stringify(this.data));
+	fs.writeFileSync(".checklist.odot", JSON.stringify(this.data, null, '\t'));
 }
 
 Odot.prototype.print = function() {
@@ -130,6 +132,36 @@ Odot.prototype.stats = function() {
 	console.log("All:")
 	console.log(colors.green('\t✓ Finished: ' + this.data.stats.done));
 	console.log(colors.grey('\t- Unfinished: ' + (this.data.stats.unfinished + cs.unfinished)));
+}
+
+// Remote
+
+Odot.prototype.connect = function(secret) {
+	this.data.remote.secret = secret;
+	console.log("Connected to remote " + secret);
+	this.save();
+}
+
+Odot.prototype.disconnect = function() {
+	delete this.data.remote;
+}
+
+Odot.prototype.push = function () {
+	remote.push(this.data);
+}
+
+Odot.prototype.pull = function() {
+	var d = this.data;
+	remote.pull(d, function(res) {
+		var localVersionIndex = res.data.versions.indexOf(d.remote.version);
+		if (localVersionIndex > 0) {
+			this.data = res.data.data;
+			this.save();
+		} else {
+			// Not in the queue yet
+			console.log("The local version of the list is probably newer.");
+		}
+	});
 }
 
 // Helpers

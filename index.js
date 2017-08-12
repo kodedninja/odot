@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const program = require("commander");
 const _version_ = require("./package.json").version;
-const Odot = require('./lib/odot.js');
+const Odot = require('./src/odot.js');
 
 var json;
 
@@ -66,6 +66,28 @@ program
     .description("Clear your list")
     .action(function() {
         odot.zero();
+});
+
+// remote
+program
+    .command("connect <secret>").alias("c")
+    .description("Connect to remote")
+    .action(function(secret) {
+        odot.connect(secret);
+});
+
+program
+    .command("push")
+    .description("Push to remote")
+    .action(function() {
+        odot.push();
+});
+
+program
+    .command("pull")
+    .description("Pull from remote")
+    .action(function() {
+        odot.pull();
 });
 
 program.parse(process.argv);

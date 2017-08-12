@@ -1,1 +1,16 @@
-{"items":[{"name":"World ","done":false}],"stats":{"done":1,"unfinished":0}}
+{
+	"items": [
+		{
+			"name": "Hello ",
+			"done": false
+		}
+	],
+	"stats": {
+		"done": 0,
+		"unfinished": 0
+	},
+	"remote": {
+		"version": "SJDnd9nw-",
+		"secret": "46Juzcyx"
+	}
+}
