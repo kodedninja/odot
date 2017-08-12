@@ -1,1 +1,1 @@
-{"items":[{"name":"Hello ","done":true},{"name":"World ","done":false}],"stats":{"done":1,"unfinished":0}}
+{"items":[{"name":"World ","done":false}],"stats":{"done":1,"unfinished":0}}

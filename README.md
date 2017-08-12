@@ -1,5 +1,5 @@
 # odot
-odot is a really simple checklist command line tool. It's pretty dumb, but I'll work on it.
+odot is a really simple checklist command line tool. It's pretty dumb, but I'll work on it. It makes todoing very comfortable through short commands.
 
 ### Installation
 ```
@@ -18,6 +18,7 @@ Usage: odot <command> <item>
     remove|- <item>     Remove an item to your list
     filter|*            Remove finished items from your list
     check|! <item>      Check an item on your list
+    stats|s             Print your stats
     clear|0             Clear your list
 
   Options:
@@ -56,3 +57,8 @@ Prints the list
 odot *
 ```
 Remove finished items from your list
+<br><br>
+```
+odot s
+```
+Print your stats
