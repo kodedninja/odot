@@ -55,6 +55,13 @@ program
 });
 
 program
+    .command("stats").alias("s")
+    .description("Print your stats")
+    .action(function() {
+        odot.stats();
+});
+
+program
     .command("clear").alias("0")
     .description("Clear your list")
     .action(function() {
