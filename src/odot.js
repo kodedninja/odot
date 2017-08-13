@@ -147,9 +147,12 @@ Odot.prototype.disconnect = function() {
 }
 
 Odot.prototype.push = function () {
+	var t = this;
 	remote.push(this.data, function(res) {
-		if (res.data == 'created') console.log("A remote list was created");
-		else console.log('Remote list updated at ' + this.data.remote.secret);
+		if (res.data == 'created') {
+			console.log("A remote list was created at " + t.data.remote.secret);
+			t.save();
+		} else console.log('Remote list updated at ' + t.data.remote.secret);
 	});
 }
 

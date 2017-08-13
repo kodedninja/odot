@@ -5,7 +5,9 @@ const shortid = require('shortid');
 var remote = {};
 
 remote.push = function(data, cb) {
-	if (!checkRemote(data)) return null;
+	if (!checkRemote(data)) {
+		data.remote = {secret: shortid.generate()};
+	}
 
 	var secret = data.remote.secret;
 	axios.post('http://localhost:8080/api/l/' + secret, {
@@ -16,7 +18,10 @@ remote.push = function(data, cb) {
 }
 
 remote.pull = function(data, cb) {
-	if (!checkRemote(data)) return null;
+	if (!checkRemote(data)) {
+		console.log(colors.red("The list is not connected to any remotes. Try odot c <secret> "));
+		return null;
+	}
 
 	var secret = data.remote.secret;
 	axios.get('http://localhost:8080/api/l/' + secret).then(cb).catch(function(err) {
@@ -25,10 +30,7 @@ remote.pull = function(data, cb) {
 }
 
 function checkRemote(data) {
-	if (!data.remote || !data.remote.secret) {
-		console.log(colors.red("The list is not connected to any remotes. Try odot c <secret> "));
-		return false;
-	}
+	if (!data.remote || !data.remote.secret) return false;
 	return true;
 }
 
