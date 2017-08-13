@@ -12,12 +12,12 @@ Odot.prototype.load = function() {
 		var string = fs.readFileSync('.odot', {encoding: 'utf-8'});
 		return JSON.parse(string);
 	} catch (e) {
-		return {items: [], stats: Odot.newStats(), remote: {version: shortid.generate()}};
+		return {items: [], stats: Odot.newStats(), remote: {}};
 	}
 }
 
 Odot.prototype.save = function() {
-	fs.writeFileSync(".checklist.odot", JSON.stringify(this.data, null, '\t'));
+	fs.writeFileSync(".odot", JSON.stringify(this.data, null, '\t'));
 }
 
 Odot.prototype.print = function() {
@@ -120,7 +120,7 @@ Odot.prototype.check = function(item) {
 
 Odot.prototype.zero = function() {
 	console.log(colors.grey("Bye, bye! *o*"));
-	fs.unlink(".checklist.odot", function(err) {});
+	fs.unlink(".odot", function(err) {});
 }
 
 Odot.prototype.stats = function() {
@@ -148,21 +148,17 @@ Odot.prototype.disconnect = function() {
 
 Odot.prototype.push = function () {
 	remote.push(this.data, function(res) {
-		console.log(res.data)
+		if (res.data == 'created') console.log("A remote list was created");
+		else console.log('Remote list updated at ' + this.data.remote.secret);
 	});
 }
 
 Odot.prototype.pull = function() {
 	var t = this;
 	remote.pull(t.data, function(res) {
-		var localVersionIndex = res.data.versions.indexOf(t.data.remote.version);
-		//if (localVersionIndex > 0) {
-			t.data = res.data.data;
-			t.save();
-		//} else {
-			// Not in the queue yet
-		//	console.log("The local version of the list is probably newer.");
-	//	}
+		console.log("Local list updated from " + t.data.remote.secret);
+		t.data = res.data.data;
+		t.save();
 	});
 }
 

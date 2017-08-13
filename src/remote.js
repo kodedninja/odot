@@ -7,9 +7,6 @@ var remote = {};
 remote.push = function(data, cb) {
 	if (!checkRemote(data)) return null;
 
-	// Make new version
-	data.remote.version = shortid.generate();
-
 	var secret = data.remote.secret;
 	axios.post('http://localhost:8080/api/l/' + secret, {
 		data: data
