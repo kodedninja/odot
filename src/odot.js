@@ -9,7 +9,7 @@ function Odot() {
 
 Odot.prototype.load = function() {
 	try {
-		var string = fs.readFileSync('.checklist.odot', {encoding: 'utf-8'});
+		var string = fs.readFileSync('.odot', {encoding: 'utf-8'});
 		return JSON.parse(string);
 	} catch (e) {
 		return {items: [], stats: Odot.newStats(), remote: {version: shortid.generate()}};
