@@ -20,6 +20,7 @@ Usage: odot <command> <item>
     check|! <item>      Check an item on your list
     stats|s             Print your stats
     clear|0             Clear your list
+    idea|? [item...]    Adds an idea to the list
 
   Options:
 
@@ -62,3 +63,8 @@ Remove finished items from your list
 odot s
 ```
 Print your stats
+<br><br>
+```
+odot ? This is an idea
+```
+Adds "This is an idea" to the list
