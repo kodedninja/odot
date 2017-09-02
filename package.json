@@ -1,6 +1,6 @@
 {
   "name": "odotlist",
-  "version": "1.1.0",
+  "version": "1.2",
   "description": "A simple CLI checklist",
   "main": "index.js",
   "bin": {
