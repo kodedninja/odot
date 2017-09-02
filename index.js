@@ -93,7 +93,7 @@ program
 })
 
 // remote
-program
+/* program
     .command("connect <secret>").alias("c")
     .description("Connect to remote")
     .action(function(secret) {
@@ -113,6 +113,7 @@ program
     .action(function() {
         odot.pull();
 });
+*/
 
 program.parse(process.argv);
 
