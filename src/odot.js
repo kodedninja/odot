@@ -73,7 +73,7 @@ Odot.prototype.minus = function(item) {
 		}, this);
 	} else {
 		let i = parseInt(item) - 1;
-		if (!this.data.items[i].done) this.data.stats.unfinished++;
+		if (this.data.items[i] && !this.data.items[i].done) this.data.stats.unfinished++;
 		this.data.items.splice(i, 1);
 	}
 	this.print();
@@ -116,7 +116,7 @@ Odot.prototype.check = function(item) {
 		}, this);
 	} else {
 		let i = parseInt(item) - 1;
-		if (!this.data.items[i].done) {
+		if (this.data.items[i] && !this.data.items[i].done) {
 			this.data.items[i].done = true;
 			this.data.stats.done++;
 		}
