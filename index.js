@@ -74,7 +74,23 @@ program
     .action(function(item) {
         item = Odot.makeText(item);
         odot.question(item);
-    });
+});
+
+program
+    .command("yes [item...]").alias("y")
+    .description("Adds an idea to the todo list")
+    .action(function(item) {
+        item = Odot.makeText(item);
+        odot.yes(item);
+});
+
+program
+    .command("no [item...]").alias("n")
+    .description("Removes an idea from the list")
+    .action(function(item) {
+        item = Odot.makeText(item);
+        odot.no(item);
+})
 
 // remote
 program

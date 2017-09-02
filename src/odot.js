@@ -148,6 +148,41 @@ Odot.prototype.question = function(item) {
 	this.save();
 }
 
+Odot.prototype.yes = function(item) {
+	// Is the selector the number or the text of item
+	if (isNaN(item)) {
+		this.data.ideas.forEach(function(element) {
+			if (element.name == item) {
+				var name = this.data.ideas[i].name;
+				this.data.ideas.splice(this.data.ideas.indexOf(element), 1);
+				this.plus(name);
+				return;
+			}
+		}, this);
+	} else {
+		let i = parseInt(item) - 1;
+		var name = this.data.ideas[i].name;
+		this.data.ideas.splice(i, 1);
+		this.plus(name);
+	}
+}
+
+Odot.prototype.no = function(item) {
+	if (isNaN(item)) {
+		this.data.ideas.forEach(function(element) {
+			if (element.name == item) {
+				this.data.ideas.splice(this.data.ideas.indexOf(element), 1);
+				return;
+			}
+		}, this);
+	} else {
+		let i = parseInt(item) - 1;
+		this.data.ideas.splice(i, 1);
+	}
+	this.print();
+	this.save();
+}
+
 // Remote
 
 Odot.prototype.connect = function(secret) {
