@@ -21,6 +21,8 @@ Usage: odot <command> <item>
     stats|s             Print your stats
     clear|0             Clear your list
     idea|? [item...]    Adds an idea to the list
+    yes|y [item...]     Adds an idea to the todo list
+    no|n [item...]      Removes an idea from the list
 
   Options:
 
@@ -68,3 +70,13 @@ Print your stats
 odot ? This is an idea
 ```
 Adds "This is an idea" to the list
+<br><br>
+```
+odot yes This is an idea
+```
+Adds "This is an idea" to the list from idea list
+<br><br>
+```
+odot no This is an idea
+```
+Removed "This is an idea" from idea list
