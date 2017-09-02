@@ -12,7 +12,7 @@ Odot.prototype.load = function() {
 		var string = fs.readFileSync('.odot', {encoding: 'utf-8'});
 		return JSON.parse(string);
 	} catch (e) {
-		return {items: [], stats: Odot.newStats(), remote: {}};
+		return {items: [], ideas: [], stats: Odot.newStats(), remote: {}};
 	}
 }
 
@@ -25,6 +25,14 @@ Odot.prototype.print = function() {
 	for (var i = 0; i < json.items.length; i++) {
 		if (json.items[i].done) console.log(colors.green('✓ (' + (i + 1) + ') ' + json.items[i].name));
 		else console.log(colors.red.bold('✗ (' + (i + 1) + ') ' + json.items[i].name));
+	}
+
+	if (json.ideas.length) {
+		console.log('\nIdeas:');
+
+		for (var i = 0; i < json.ideas.length; i++) {
+			console.log(colors.blue('(' + (i + 1) + ') ' + json.ideas[i].name));
+		}
 	}
 }
 
@@ -134,6 +142,12 @@ Odot.prototype.stats = function() {
 	console.log(colors.grey('\t- Unfinished: ' + (this.data.stats.unfinished + cs.unfinished)));
 }
 
+Odot.prototype.question = function(item) {
+	this.data.ideas.push({"name": item});
+	this.print();
+	this.save();
+}
+
 // Remote
 
 Odot.prototype.connect = function(secret) {
@@ -169,13 +183,6 @@ Odot.prototype.pull = function() {
 
 Odot.newStats = function() {
 	return {done: 0, unfinished: 0};
-}
-
-Odot.printList = function(json) {
-	for (var i = 0; i < json.items.length; i++) {
-		if (json.items[i].done) console.log(colors.green('✓ (' + (i + 1) + ') ' + json.items[i].name));
-		else console.log(colors.red.bold('✗ (' + (i + 1) + ') ' + json.items[i].name));
-	}
 }
 
 Odot.makeText = function(arr) {

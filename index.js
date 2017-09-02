@@ -68,6 +68,14 @@ program
         odot.zero();
 });
 
+program
+    .command("idea [item...]").alias("?")
+    .description("Adds an idea to the list")
+    .action(function(item) {
+        item = Odot.makeText(item);
+        odot.question(item);
+    });
+
 // remote
 program
     .command("connect <secret>").alias("c")

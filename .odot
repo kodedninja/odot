@@ -1,20 +1,18 @@
 {
 	"items": [
 		{
-			"name": "Hello ",
-			"done": true
-		},
+			"name": "Test ",
+			"done": false
+		}
+	],
+	"ideas": [
 		{
-			"name": "World ",
-			"done": true
+			"name": "Idea "
 		}
 	],
 	"stats": {
-		"done": 2,
+		"done": 0,
 		"unfinished": 0
 	},
-	"remote": {
-		"version": "rJ0heonD-",
-		"secret": "46Juzcyx"
-	}
+	"remote": {}
 }
