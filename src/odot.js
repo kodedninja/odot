@@ -153,7 +153,7 @@ Odot.prototype.yes = function(item) {
 	if (isNaN(item)) {
 		this.data.ideas.forEach(function(element) {
 			if (element.name == item) {
-				var name = this.data.ideas[i].name;
+				var name = element.name;
 				this.data.ideas.splice(this.data.ideas.indexOf(element), 1);
 				this.plus(name);
 				return;
