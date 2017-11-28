@@ -33,50 +33,50 @@ Commands ```-``` and ```!``` also work with numbers (ex.: ```odot ! 1``` will ch
 
 #### Examples
 ```
-odot + Make examples
+$ odot + Make examples
 ```
 Adds "Make examples" to your list
 <br><br>
 ```
-odot ! Make examples
+$ odot ! Make examples
 ```
 or
 ```
-odot ! 1
+$ odot ! 1
 ```
 Checks "Make examples"
 <br><br>
 ```
-odot - Make examples
+$ odot - Make examples
 ```
 Removes "Make examples" from the list
 <br><br>
 ```
-odot =
+$ odot =
 ```
 Prints the list
 <br><br>
 ```
-odot *
+$ odot *
 ```
 Remove finished items from your list
 <br><br>
 ```
-odot s
+$ odot s
 ```
 Print your stats
 <br><br>
 ```
-odot ? This is an idea
+$ odot ? This is an idea
 ```
 Adds "This is an idea" to the list
 <br><br>
 ```
-odot yes This is an idea
+$ odot yes This is an idea
 ```
 Adds "This is an idea" to the list from idea list
 <br><br>
 ```
-odot no This is an idea
+$ odot no This is an idea
 ```
 Removed "This is an idea" from idea list
