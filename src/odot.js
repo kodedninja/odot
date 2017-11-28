@@ -21,7 +21,7 @@ Odot.prototype.save = function() {
 }
 
 Odot.prototype.print = function() {
-	let json = this.data;
+	var json = this.data;
 	for (var i = 0; i < json.items.length; i++) {
 		if (json.items[i].done) console.log(colors.green('✓ (' + (i + 1) + ') ' + json.items[i].name));
 		else console.log(colors.red.bold('✗ (' + (i + 1) + ') ' + json.items[i].name));
@@ -60,7 +60,7 @@ Odot.prototype.plus = function(item) {
 
 Odot.prototype.minus = function(item) {
 	if (!this.data.stats) this.data.stats = Odot.newStats();
-	let p = 0;
+	var p = 0;
 	if (item == '') item = this.data.items.length;
 	if (isNaN(item)) {
 		this.data.items.forEach(function(element) {
@@ -72,7 +72,7 @@ Odot.prototype.minus = function(item) {
 			p++;
 		}, this);
 	} else {
-		let i = parseInt(item) - 1;
+		var i = parseInt(item) - 1;
 		if (this.data.items[i] && !this.data.items[i].done) this.data.stats.unfinished++;
 		this.data.items.splice(i, 1);
 	}
@@ -96,7 +96,7 @@ Odot.prototype.check = function(item) {
 	if (!this.data.stats) this.data.stats = Odot.newStats();
 	if (item == '') {
 		// Find first unchecked
-		let counter = 1;
+		var counter = 1;
 		this.data.items.forEach(function(element) {
 			if (element.done == false) {
 				item = counter;
@@ -115,7 +115,7 @@ Odot.prototype.check = function(item) {
 			}
 		}, this);
 	} else {
-		let i = parseInt(item) - 1;
+		var i = parseInt(item) - 1;
 		if (this.data.items[i] && !this.data.items[i].done) {
 			this.data.items[i].done = true;
 			this.data.stats.done++;
@@ -160,7 +160,7 @@ Odot.prototype.yes = function(item) {
 			}
 		}, this);
 	} else {
-		let i = parseInt(item) - 1;
+		var i = parseInt(item) - 1;
 		var name = this.data.ideas[i].name;
 		this.data.ideas.splice(i, 1);
 		this.plus(name);
@@ -176,7 +176,7 @@ Odot.prototype.no = function(item) {
 			}
 		}, this);
 	} else {
-		let i = parseInt(item) - 1;
+		var i = parseInt(item) - 1;
 		this.data.ideas.splice(i, 1);
 	}
 	this.print();
